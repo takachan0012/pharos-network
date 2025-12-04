@@ -6,6 +6,7 @@ import { getPrice } from "./price";
 import { getData } from "./data";
 import { success } from "@scripts/utils/console";
 import { randomAmount } from "@scripts/utils/amount";
+import { isSufficientFee } from "@scripts/utils/fee";
 
 interface OpenPosition {
   baseDir: string;
@@ -63,16 +64,15 @@ export async function openPosition({
     }).toFixed(2)
   );
   if (amount < 2 || Number(availableBalanceSize) < 2) {
-    throw Error(
+    console.log(
       `Minimum order amount 2 ${coinName}! your balance: ${availableBalanceSize} ${coinName}, Open https://testnet.bitverse.zone/app/ to deposit or sync your account!`
     );
+    return;
   }
   if (amount > Number(availableBalanceSize)) {
-    throw Error(
-      `Insufficient balance for open position: selected margin: ${amount} ${coinName}, your balance: ${Number(
-        availableBalanceSize
-      )} ${coinName}`
-    );
+    `Insufficient balance for open position: selected margin: ${amount} ${coinName}, your balance: ${Number(
+      availableBalanceSize
+    )} ${coinName}`;
   }
   const data = await getData({
     marginAmount: amount.toString(),
@@ -120,16 +120,31 @@ export async function openPosition({
   const callData = iface.encodeFunctionData("func_0068", params);
   const selector = "0x12f10a18";
   const newCallData = selector + callData.slice(10);
-  console.log(
-    `Opening position ${side == 1 ? "long" : "short"} ${pair} for ${
-      margin[0].amount
-    } ${margin[0].denom}, Order type: ${orderType == 1 ? "market" : "limit"}...`
-  );
-  const tx = await signer.sendTransaction({
+  const isSufficientFeeNative: boolean = await isSufficientFee({
     to: router,
+    from: signer.address,
     data: newCallData,
-    gasLimit: 5_000_000n,
+    provider,
+    maxFee: parseUnits("3", "gwei"),
   });
-  await tx.wait();
-  success({ hash: tx.hash });
+  if (isSufficientFeeNative) {
+    console.log(
+      `Opening position ${side == 1 ? "long" : "short"} ${pair} for ${
+        margin[0].amount
+      } ${margin[0].denom}, Order type: ${
+        orderType == 1 ? "market" : "limit"
+      }...`
+    );
+    const tx = await signer.sendTransaction({
+      to: router,
+      data: newCallData,
+      maxPriorityFeePerGas: parseUnits("2", "gwei"),
+      maxFeePerGas: parseUnits("3", "gwei"),
+      gasLimit: 3_000_000n,
+    });
+    await tx.wait();
+    success({ hash: tx.hash });
+  } else {
+    console.error(`Insufficient native funds for max gas fee`);
+  }
 }
