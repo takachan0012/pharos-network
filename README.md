@@ -319,6 +319,28 @@ npm run atlanticBitverseOpenPosition
 npm run atlanticBitverseWithdraw
 ```
 
+##### Zenithswap lend and borrow
+
+###### Supply
+```bash
+npm run atlanticZenithswapSupply
+```
+
+###### Borrow
+```bash
+npm run atlanticZenithswapBorrow
+```
+
+###### Repay
+```bash
+npm run atlanticZenithswapRepay
+```
+
+###### Withdraw
+```bash
+npm run atlanticZenithswapWithdraw
+```
+
 ### 7. Detach the Screen Session
 Press: Ctrl + A, then D
 
