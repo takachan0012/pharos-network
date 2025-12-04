@@ -34,7 +34,11 @@
     "atlanticFaroswapToken": "npx hardhat run main/atlantic/faroswap/swapTokenToToken.ts",
     "atlanticBitverseDeposit": "npx hardhat run main/atlantic/bitverse/deposit.ts",
     "atlanticBitverseOpenPosition": "npx hardhat run main/atlantic/bitverse/openPosition.ts",
-    "atlanticBitverseWithdraw": "npx hardhat run main/atlantic/bitverse/withdraw.ts"
+    "atlanticBitverseWithdraw": "npx hardhat run main/atlantic/bitverse/withdraw.ts",
+    "atlanticZenithswapSupply": "npx hardhat run main/atlantic/zenithswap/supply.ts",
+    "atlanticZenithswapBorrow": "npx hardhat run main/atlantic/zenithswap/borrow.ts",
+    "atlanticZenithswapRepay": "npx hardhat run main/atlantic/zenithswap/repay.ts",
+    "atlanticZenithswapWithdraw": "npx hardhat run main/atlantic/zenithswap/withdraw.ts"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
