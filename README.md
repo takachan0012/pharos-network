@@ -341,6 +341,23 @@ npm run atlanticZenithswapRepay
 npm run atlanticZenithswapWithdraw
 ```
 
+##### Aquaflux structure 
+
+###### Split
+```bash
+npm run atlanticAquafluxSplit
+```
+
+###### Combine
+```bash
+npm run atlanticAquafluxCombine
+```
+
+###### Wrapper
+```bash
+npm run atlanticAquafluxWrapper
+```
+
 ### 7. Detach the Screen Session
 Press: Ctrl + A, then D
 
