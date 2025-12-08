@@ -19,10 +19,23 @@ export interface Wrapper extends Constant {
   action: string;
 }
 
+export interface SAsset extends Token {
+  router: string;
+}
+
+export interface Earn {
+  router: string;
+  amount: bigint;
+  asset: SAsset;
+  signer: Wallet;
+  provider: JsonRpcProvider;
+}
+
 export const aquafluxAbi: string[] = [
   "function split(bytes32 assetId, uint256 amount)",
   "function wrap(bytes32,uint256)",
   "function unwrap(bytes32,uint256)",
+  "function stake(uint256 amount)",
 ];
 
 export const routerAquaflux: string =
@@ -82,6 +95,24 @@ export const wAssets: Token[] = [
   {
     name: "wrap Private Credit",
     address: "0x3f73e248be3a004ebfefc05233b22e9496bd94b4",
+  },
+];
+
+export const sAssets: SAsset[] = [
+  {
+    name: "S Corporate Bond",
+    address: "0xed75c5b68284a1a9568e26a2b48655a3d518d4bc",
+    router: "0x534966536969c3b697a04538e475992c981521cf",
+  },
+  {
+    name: "S US Treasury",
+    address: "0x93bc7267d802201e51926bef331de80c965ec55f",
+    router: "0x92864f94020e79a52aca036c6a3d3be9d4388a39",
+  },
+  {
+    name: "S Private Credit",
+    address: "0xc1cf3cf3a86807e8319c0ab1754413c854ab5b7d",
+    router: "0x3eaef8f467059915a6eeb985a0d08de063ab16f9",
   },
 ];
 
