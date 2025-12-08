@@ -358,6 +358,11 @@ npm run atlanticAquafluxCombine
 npm run atlanticAquafluxWrapper
 ```
 
+##### Aquaflux earn
+```bash
+npm run atlanticAquafluxEarn
+```
+
 ### 7. Detach the Screen Session
 Press: Ctrl + A, then D
 
