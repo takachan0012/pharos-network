@@ -41,7 +41,8 @@
     "atlanticZenithswapWithdraw": "npx hardhat run main/atlantic/zenithswap/withdraw.ts",
     "atlanticAquafluxSplit": "npx hardhat run main/atlantic/aquaflux/split.ts",
     "atlanticAquafluxCombine": "npx hardhat run main/atlantic/aquaflux/combine.ts",
-    "atlanticAquafluxWrapper": "npx hardhat run main/atlantic/aquaflux/wrapper.ts"
+    "atlanticAquafluxWrapper": "npx hardhat run main/atlantic/aquaflux/wrapper.ts",
+    "atlanticAquafluxEarn": "npx hardhat run main/atlantic/aquaflux/earn.ts"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
